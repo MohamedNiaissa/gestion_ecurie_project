@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:gestion_ecurie/controller/login.dart';
+import 'package:gestion_ecurie/services/login_service.dart';
 import 'package:gestion_ecurie/services/mongodb.dart';
 
 void main() {
@@ -38,14 +41,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // déclaration des controllers pour le form de connexion
+  TextEditingController username = new TextEditingController();
+  TextEditingController mdp = new TextEditingController();
+
   int _counter = 0;
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
-
-    MongoDataBase.connect();
   }
 
   @override
@@ -55,16 +60,50 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.person_add), onPressed: () {}),
-          IconButton(icon: Icon(Icons.login), onPressed: () {})
+          IconButton(
+            icon: Icon(Icons.login),
+            onPressed: () => showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                // déclaration de la pop up
+                title: Center(child: const Text('Connexion')),
+                actions: <Widget>[
+                  TextField(
+                    controller: username,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Nom utilisateur',
+                    ),
+                  ),
+                  SizedBox(height: 15), // Espace entre les deux champs
+                  TextField(
+                    controller: mdp,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Mot de passe',
+                    ),
+                  ),
+                  Center(
+                    child: TextButton(
+                      onPressed: () => {
+                        Navigator.pop(context, 'OK'),
+                        verifyUser(username.text, mdp.text)
+                      },
+                      child: const Text('Se connecter'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
+            const Text('You have pushed the button this many times:'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
