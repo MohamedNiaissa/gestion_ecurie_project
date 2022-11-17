@@ -74,8 +74,8 @@ class _MySignupPopup extends State<SignupPop> {
               if (_formKey.currentState!.validate()) {
                 Signup(usernameController.text, passwordController.text, mailController.text,
                     profilePictureController.text);
+                Navigator.pop(context);
               }
-              Navigator.pop(context);
             },
             child: Text('submit'),
           )
