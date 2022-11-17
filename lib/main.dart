@@ -100,7 +100,29 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-
+      drawer: Drawer(
+          child: ListView(children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text("Les chevaux de l'écurie"),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: const Text('Les événements prévues'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            )
+          ])),
       floatingActionButton: FloatingActionButton(
         onPressed: clearLocalStorage,
         tooltip: 'Increment',
