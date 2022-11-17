@@ -1,6 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gestion_ecurie/controller/actualites_controller.dart';
 import 'package:gestion_ecurie/models/actualite.dart';
+import 'package:gestion_ecurie/view/pages/signup_popup.dart';
+import 'package:gestion_ecurie/backend/local_storage.dart';
+import 'package:go_router/go_router.dart';
+
+import 'FormLogin.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -12,6 +19,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   List<Actualite> news = [];
   
   clearLocalStorage() {
@@ -36,6 +44,9 @@ class _HomePageState extends State<HomePage> {
         ],
       )
     );
+  void _newEvent() {
+    ActualitesController.insert();
+    // ajoute une fausse inscription aux actualités
   }
 
   @override
@@ -46,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.home),
+              icon: Image.asset('assets/img/unicorn_logo.png'),
               onPressed :() => context.go('/')),
 
           IconButton(
@@ -99,6 +110,21 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      drawer: Drawer(
+          child: ListView(children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text("Les chevaux de l'écurie"),
+              onTap: () {
+                return context.go('/horse_page');
+              },
+            ),
+          ])),
       floatingActionButton: FloatingActionButton(
         onPressed: refreshNews,
         tooltip: 'refresh',
