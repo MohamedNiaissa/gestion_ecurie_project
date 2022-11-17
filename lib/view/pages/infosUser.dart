@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:gestion_ecurie/backend/local_storage.dart';
 
+import '../../controller/update.dart';
 import '../../models/user.dart';
+import '../../services/update.dart';
 
 class InfosUser extends StatefulWidget {
   const InfosUser({Key? key}) : super(key: key);
@@ -61,11 +63,23 @@ class _InfosUserState extends State<InfosUser> {
                   border: OutlineInputBorder(),
                 ),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  updateUser("username",user["username"], "username" ,username.text);
+                },
+                child: const Text("Modifier mon nom d'utilisateur"),
+              ),
               TextField(
                 controller: userPhoto,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  updateData("username", user["username"],"userPhoto" , userPhoto.text);
+                },
+                child: const Text("Modifier ma photo d'utilisateur"),
               ),
               TextField(
                 controller: dateNaiss,
@@ -73,11 +87,23 @@ class _InfosUserState extends State<InfosUser> {
                   border: OutlineInputBorder(),
                 ),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  updateData("username", user["username"], "dateNaiss", dateNaiss.text);
+                },
+                child: const Text("Modifier ma date de naissance"),
+              ),
               TextField(
                 controller: userMail,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  updateData("username", user["username"],"userMail", userMail.text);
+                },
+                child: const Text("Modifier mon email"),
               ),
               TextField(
                 controller: userPhone,
@@ -85,25 +111,24 @@ class _InfosUserState extends State<InfosUser> {
                   border: OutlineInputBorder(),
                 ),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  updateData("username", user["username"], "userPhone",userPhone.text);
+                },
+                child: const Text("Modifier mon numero de telephone"),
+              ),
               TextField(
                 controller: profilFFE,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Data')),
-                      );
-                    }
-                  },
-                  child: const Text('Modifier mes informations'),
-                ),
-              ),
+              ElevatedButton(
+                onPressed: () {
+                  updateData("username", user["username"], "profilFFE",profilFFE.text);
+                },
+                child: const Text("Modifier mon lien de profil FFE"),
+              )
             ],
           ),
         ),

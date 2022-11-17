@@ -3,8 +3,8 @@ import 'package:gestion_ecurie/services/mongodb.dart';
 import 'package:gestion_ecurie/view/pages/profil.dart';
 import 'package:gestion_ecurie/view/pages/signup_popup.dart';
 import 'package:gestion_ecurie/backend/local_storage.dart';
-import 'package:gestion_ecurie/controller/login.dart';
 import 'package:gestion_ecurie/view/pages/FormLogin.dart';
+import 'package:gestion_ecurie/view/shared/navbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,39 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.person_add),
-              onPressed: () {
-// Ici je créer la popup qui affichera le formulaire de création de compte
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        content: Stack(
-                          clipBehavior: Clip.none, children: <Widget>[
-                          SignupPop()
-                          ],
-                        ),
-                      );
-                    });
-              }),
-          IconButton(
-            icon: Icon(Icons.login),
-            onPressed: () => showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                // déclaration de la pop up
-                title: Center(child: const Text('Connexion')),
-                actions: <Widget>[
-                  FormLogin()
-                ],
-              ),
-            ),
-          )
-        ],
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(70),
+        child: Navbar(),
       ),
       body: Center(
         child: Column(
@@ -101,13 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-          if(LocalStorageHelper.getValue("tokenUser") != null)...[
-              IconButton(onPressed: () => {
-                Navigator.of(context)
-                    .pushNamed(Profil.tag)
-                    .then((_) => setState(() {}))
-              }, icon: Icon(Icons.person))
-            ]
           ],
         ),
       ),
@@ -131,11 +94,13 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             )
           ])),
+
       floatingActionButton: FloatingActionButton(
         onPressed: clearLocalStorage,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
+
     );
   }
 }
