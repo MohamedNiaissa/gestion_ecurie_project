@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_ecurie/services/mongodb.dart';
+import 'package:gestion_ecurie/view/pages/profil.dart';
+import 'package:gestion_ecurie/view/pages/signup_popup.dart';
 import 'package:gestion_ecurie/backend/local_storage.dart';
 import 'package:gestion_ecurie/controller/login.dart';
-import 'package:gestion_ecurie/view/pages/profil.dart';
+import 'package:gestion_ecurie/view/pages/FormLogin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,15 +46,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // déclaration des controllers pour le form de connexion
-  TextEditingController username = new TextEditingController();
-  TextEditingController mdp = new TextEditingController();
 
   int _counter = 0;
 
-  void _incrementCounter() {
-    LocalStorageHelper.clearAll();
-    setState(() {});
+  void clearLocalStorage() {
+    setState(() {
+      LocalStorageHelper.clearAll();
+    });
   }
 
   @override
@@ -60,7 +61,22 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.person_add), onPressed: () {}),
+          IconButton(
+              icon: Icon(Icons.person_add),
+              onPressed: () {
+// Ici je créer la popup qui affichera le formulaire de création de compte
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        content: Stack(
+                          clipBehavior: Clip.none, children: <Widget>[
+                          SignupPop()
+                          ],
+                        ),
+                      );
+                    });
+              }),
           IconButton(
             icon: Icon(Icons.login),
             onPressed: () => showDialog<String>(
@@ -69,31 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 // déclaration de la pop up
                 title: Center(child: const Text('Connexion')),
                 actions: <Widget>[
-                  TextField(
-                    controller: username,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Nom utilisateur',
-                    ),
-                  ),
-                  SizedBox(height: 15), // Espace entre les deux champs
-                  TextField(
-                    controller: mdp,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Mot de passe',
-                    ),
-                  ),
-                  Center(
-                    child: TextButton(
-                      onPressed: () => {
-                        Navigator.pop(context, 'OK'),
-                        verifyUser(username.text, mdp.text).then((_) => setState(() {})),
-                      },
-                      child: const Text('Se connecter'),
-                    ),
-                  ),
+                  FormLogin()
                 ],
               ),
             ),
@@ -103,13 +95,13 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children:  <Widget>[
             const Text('You have pushed the button this many times:'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            if(LocalStorageHelper.getValue("token") != null)...[
+          if(LocalStorageHelper.getValue("tokenUser") != null)...[
               IconButton(onPressed: () => {
                 Navigator.of(context)
                     .pushNamed(Profil.tag)
@@ -119,11 +111,32 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+      // créer le menu burger
+      drawer: Drawer(
+          child: ListView(children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text("Les chevaux de l'écurie"),
+              onTap: () {
+              },
+            ),
+            ListTile(
+              title: const Text('Les événements prévues'),
+              onTap: () {
+              },
+            )
+          ])),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: clearLocalStorage,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
+

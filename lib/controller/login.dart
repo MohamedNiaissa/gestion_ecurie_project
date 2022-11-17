@@ -1,17 +1,16 @@
-import 'package:gestion_ecurie/models/user.dart';
 import 'package:gestion_ecurie/services/login_service.dart';
 
 import '../backend/local_storage.dart';
 
-verifyUser(String username, String mdp) async {
-    var userInfos  = await Login.getUser(username, mdp);
-    print("*******");
-    print(userInfos[0]["userPhone"]);
-    print("*******");
+// Si la longueur du tableau retourné par getUserFromCredential est > 0 alors l'utilistateur existe
+Future<bool> loginUser(String username, String mdp) async {
+  try {
+    await getUserFromCredential(username, mdp).then((userI) => {
+          LocalStorageHelper.saveValue("tokenUser", userI.toString()),
+        });
 
-    if(userInfos.length > 0) {
-     User token = new User(userInfos[0][username], userInfos[0]["userMdp"], userInfos[0]["userPhoto"], userInfos[0]["userMail"], userInfos[0]["userPhone"], userInfos[0]["profilFFE"], userInfos[0]["dateNaiss"], userInfos[0]["isGerant"]);
-        // LocalStorageHelper.saveValue("token", token);
-    }
-
+    return true;
+  } catch (e) {
+    return false;
+  }
 }

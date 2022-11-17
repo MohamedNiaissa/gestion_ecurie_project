@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gestion_ecurie/view/pages/infosUser.dart';
 
 import '../../backend/local_storage.dart';
 class Profil extends StatefulWidget {
@@ -22,8 +23,7 @@ class _ProfilState extends State<Profil> {
       body: Center(
         child: Column(
           children: [
-            Text("Bienvenue dans votre page de profil"),
-            Text(LocalStorageHelper.getValue("token"))
+            InfosUser()
           ],
         ),
       ),
