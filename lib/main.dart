@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_ecurie/services/mongodb.dart';
+import 'package:gestion_ecurie/view/pages/home_page.dart';
 import 'package:gestion_ecurie/view/pages/signup_popup.dart';
 import 'package:gestion_ecurie/backend/local_storage.dart';
 import 'package:gestion_ecurie/controller/login.dart';
@@ -96,6 +97,15 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
+            ),
+            IconButton(
+                onPressed: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage(title: "Home"))
+                  )
+                },
+                icon: const Icon(Icons.home),
             ),
           ],
         ),
