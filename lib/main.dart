@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_ecurie/services/mongodb.dart';
+import 'package:gestion_ecurie/view/pages/signup_popup.dart';
 import 'package:gestion_ecurie/backend/local_storage.dart';
 import 'package:gestion_ecurie/controller/login.dart';
 import 'package:gestion_ecurie/view/pages/FormLogin.dart';
@@ -55,7 +57,22 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.person_add), onPressed: () {}),
+          IconButton(
+              icon: Icon(Icons.person_add),
+              onPressed: () {
+// Ici je créer la popup qui affichera le formulaire de création de compte
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        content: Stack(
+                          clipBehavior: Clip.none, children: <Widget>[
+                          SignupPop()
+                          ],
+                        ),
+                      );
+                    });
+              }),
           IconButton(
             icon: Icon(Icons.login),
             onPressed: () => showDialog<String>(
@@ -83,11 +100,32 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+      // créer le menu burger
+      drawer: Drawer(
+          child: ListView(children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text("Les chevaux de l'écurie"),
+              onTap: () {
+              },
+            ),
+            ListTile(
+              title: const Text('Les événements prévues'),
+              onTap: () {
+              },
+            )
+          ])),
       floatingActionButton: FloatingActionButton(
         onPressed: clearLocalStorage,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
+

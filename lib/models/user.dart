@@ -19,4 +19,7 @@ class User {
    String toString() {
       return 'User{username: $username, userMdp: $userMdp, userPhoto: $userPhoto, userMail: $userMail, userPhone: $userPhone, profilFFE: $profilFFE, dateNaiss: $dateNaiss, isGerant: $isGerant}';
    }
+   Map<String, dynamic> toMap(){
+     return {'username': username, 'userMdp': userMdp, 'userPhoto': userPhoto, 'userMail': userMail, 'userPhone': userPhone, 'profilFFE': profilFFE, 'dateNaiss': dateNaiss, 'isGerant': isGerant};
+   }
 }
