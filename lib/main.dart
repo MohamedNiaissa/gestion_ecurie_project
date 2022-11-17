@@ -43,10 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int _counter = 0;
 
-  void _incrementCounter() {
-    LocalStorageHelper.clearAll();
+  void clearLocalStorage() {
     setState(() {
-      _counter++;
+      LocalStorageHelper.clearAll();
     });
   }
 
@@ -85,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: clearLocalStorage,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
