@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_ecurie/services/mongodb.dart';
+import 'package:gestion_ecurie/view/pages/signup_popup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -54,7 +55,22 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.person_add), onPressed: () {}),
+          IconButton(
+              icon: Icon(Icons.person_add),
+              onPressed: () {
+// Ici je créer la popup qui affichera le formulaire de création de compte
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        content: Stack(
+                          clipBehavior: Clip.none, children: <Widget>[
+                          SignupPop()
+                          ],
+                        ),
+                      );
+                    });
+              }),
           IconButton(icon: Icon(Icons.login), onPressed: () {})
         ],
       ),
@@ -72,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
@@ -80,3 +97,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+

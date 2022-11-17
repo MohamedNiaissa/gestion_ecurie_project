@@ -11,5 +11,6 @@ class MongoDataBase {
     inspect(db);
     var status = db.serverStatus();
     var collection = db.collection(COLLECTION_NAME);
+    return db;
   }
 }
