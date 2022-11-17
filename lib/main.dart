@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:gestion_ecurie/backend/local_storage.dart';
 import 'package:gestion_ecurie/controller/login.dart';
-import 'package:gestion_ecurie/services/login_service.dart';
-import 'package:gestion_ecurie/services/mongodb.dart';
+import 'package:gestion_ecurie/view/pages/profil.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +25,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+      routes:
+      {Profil.tag: (context) => const Profil(),
+      },
       home: const MyHomePage(title: 'PegasusClub'),
     );
   }
@@ -48,9 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    LocalStorageHelper.clearAll();
+    setState(() {});
   }
 
   @override
@@ -88,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: TextButton(
                       onPressed: () => {
                         Navigator.pop(context, 'OK'),
-                        verifyUser(username.text, mdp.text)
+                        verifyUser(username.text, mdp.text).then((_) => setState(() {})),
                       },
                       child: const Text('Se connecter'),
                     ),
@@ -108,6 +109,13 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            if(LocalStorageHelper.getValue("token") != null)...[
+              IconButton(onPressed: () => {
+                Navigator.of(context)
+                    .pushNamed(Profil.tag)
+                    .then((_) => setState(() {}))
+              }, icon: Icon(Icons.person))
+            ]
           ],
         ),
       ),
