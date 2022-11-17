@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_ecurie/backend/local_storage.dart';
 import 'package:gestion_ecurie/controller/login.dart';
 import 'package:gestion_ecurie/view/pages/FormLogin.dart';
 
@@ -43,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+    LocalStorageHelper.clearAll();
     setState(() {
       _counter++;
     });
