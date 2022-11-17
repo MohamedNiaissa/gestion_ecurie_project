@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_ecurie/route/route.dart';
-import 'package:gestion_ecurie/view/pages/event_stable.dart';
 void main() {
   runApp(const MyApp());
 }

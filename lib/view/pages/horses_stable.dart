@@ -86,13 +86,7 @@ class _HorsePageStable extends State<HorseStable> {
                 return context.go('/horse_page');
               },
             ),
-            ListTile(
-              title: const Text('Les événements prévues'),
-              onTap: () {
-                return context.go('/event_stable');
 
-              },
-            )
           ])),
       floatingActionButton: FloatingActionButton(
         onPressed: _newEvent,

@@ -95,13 +95,6 @@ class _HomePageState extends State<HomePage> {
                 return context.go('/horse_page');
               },
             ),
-            ListTile(
-              title: const Text('Les événements prévues'),
-              onTap: () {
-                return context.go('/event_stable');
-
-              },
-            )
           ])),
       floatingActionButton: FloatingActionButton(
         onPressed: _newEvent,
