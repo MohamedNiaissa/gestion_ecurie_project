@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+      debugShowCheckedModeBanner: false,
         // renvoie au fichier route.dart qui affichera la route dont le chemin est '/'
         routerConfig: router,
       //home: const HomePage(title: 'PegasusClub'),

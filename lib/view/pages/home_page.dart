@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gestion_ecurie/controller/actualites_controller.dart';
+import 'package:gestion_ecurie/models/actualite.dart';
 import 'package:gestion_ecurie/view/pages/signup_popup.dart';
 import 'package:gestion_ecurie/backend/local_storage.dart';
 import 'package:go_router/go_router.dart';
@@ -18,11 +19,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  List<Actualite> news = [];
+  
   clearLocalStorage() {
     setState(() {
       LocalStorageHelper.clearAll();
     });
   }
+
+  void refreshNews() async{
+    var dbNews = await ActualitesController.fetchNews();
+    setState(() {
+      news = dbNews;
+    });
+  }
+
+  Card _inscriptionNewsCard(Actualite news) {
+    return Card(
+        child: Row(
+          children: [
+            Icon(Icons.newspaper),
+            Text(news.eventType),
+          ],
+        )
+    );
+  }
+
   void _newEvent() {
     ActualitesController.insert();
     // ajoute une fausse inscription aux actualités
@@ -30,6 +53,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    //refreshNews();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -41,7 +65,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
               icon: Icon(Icons.person_add),
               onPressed: () {
-// Ici je créer la popup qui affichera le formulaire de création de compte
+                // Ici je créer la popup qui affichera le formulaire de création de compte
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -71,13 +95,20 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text(
-              'You have created this many events:',
+            Text(
+              'Actualités du club',
+              style: Theme.of(context).textTheme.headline4,
             ),
-            ElevatedButton(onPressed: clearLocalStorage(),
-                child: const Icon(Icons.add))
+            ListView.builder(
+              itemCount: news.length,
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) {
+                  return _inscriptionNewsCard(news[index]);
+                }
+            ),
           ],
         ),
       ),
@@ -97,9 +128,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ])),
       floatingActionButton: FloatingActionButton(
-        onPressed: _newEvent,
-        tooltip: 'new event',
-        child: const Icon(Icons.add),
+        onPressed: refreshNews,
+        tooltip: 'refresh',
+        child: const Icon(Icons.refresh),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
