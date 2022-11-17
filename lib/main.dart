@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:gestion_ecurie/controller/login.dart';
-import 'package:gestion_ecurie/services/login_service.dart';
-import 'package:gestion_ecurie/services/mongodb.dart';
+import 'package:gestion_ecurie/view/pages/FormLogin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,9 +39,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // déclaration des controllers pour le form de connexion
-  TextEditingController username = new TextEditingController();
-  TextEditingController mdp = new TextEditingController();
 
   int _counter = 0;
 
@@ -68,31 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 // déclaration de la pop up
                 title: Center(child: const Text('Connexion')),
                 actions: <Widget>[
-                  TextField(
-                    controller: username,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Nom utilisateur',
-                    ),
-                  ),
-                  SizedBox(height: 15), // Espace entre les deux champs
-                  TextField(
-                    controller: mdp,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Mot de passe',
-                    ),
-                  ),
-                  Center(
-                    child: TextButton(
-                      onPressed: () => {
-                        Navigator.pop(context, 'OK'),
-                        verifyUser(username.text, mdp.text)
-                      },
-                      child: const Text('Se connecter'),
-                    ),
-                  ),
+                  FormLogin()
                 ],
               ),
             ),
