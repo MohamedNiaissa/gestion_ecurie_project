@@ -100,6 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+      // créer le menu burger
       drawer: Drawer(
           child: ListView(children: [
             const DrawerHeader(
@@ -111,15 +112,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text("Les chevaux de l'écurie"),
               onTap: () {
-                // Update the state of the app.
-                // ...
               },
             ),
             ListTile(
               title: const Text('Les événements prévues'),
               onTap: () {
-                // Update the state of the app.
-                // ...
               },
             )
           ])),
@@ -127,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: clearLocalStorage,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
