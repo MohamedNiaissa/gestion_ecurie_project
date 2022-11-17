@@ -51,16 +51,26 @@ class _FormLoginState extends State<FormLogin> {
           ),
           Center(
             child: TextButton(
-              onPressed: () => {
+              onPressed:  ()  async => {
                 if (login_form.currentState!.validate())
                   {
-                    Navigator.pop(context, 'OK')
+                    if( await isUserThere()) {
+                      Navigator.pop(context, 'OK')
+                    } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Nom d'utilisateur et/ou mot de passe incorrect")),
+                  )
+                    }
                   },
-                verifyUser(username.text, mdp.text)
               },
               child: const Text('Se connecter'),
             ),
           ),
         ]));
+  }
+
+  // Retourne vrai ou faux en fonction de l'existance de l'utilisateur en db
+  Future<bool> isUserThere() async {
+    return await loginUser(username.text, mdp.text);
   }
 }
