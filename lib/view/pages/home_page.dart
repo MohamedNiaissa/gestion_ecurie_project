@@ -15,9 +15,7 @@ class _HomePageState extends State<HomePage> {
 
   void _newEvent() {
     ActualitesController.insert();
-    setState(() {
-      _counter++;
-    });
+    // ajoute une fausse inscription aux actualités
   }
 
   @override
@@ -35,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'You have created this many events:',
             ),
             Text(
               '$_counter',
