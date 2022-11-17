@@ -3,7 +3,7 @@ import 'package:gestion_ecurie/services/mongodb.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
   newInscription(username) async {
-    //ajoute un évènement correspondant (pour l'instant) à l'inscription du premier utilisateur trouvé
+    //ajoute un évènement correspondant à l'inscription de l'utilisateur passé en argument
     var db = await MongoDataBase.connect();
     DbCollection newsCollection = await db.collection('Actualites');
 
