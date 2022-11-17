@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_ecurie/services/mongodb.dart';
+import 'package:gestion_ecurie/view/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -54,8 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.person_add), onPressed: () {}),
-          IconButton(icon: Icon(Icons.login), onPressed: () {})
+          IconButton(icon: const Icon(Icons.person_add), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.login), onPressed: () {})
         ],
       ),
       body: Center(
@@ -68,6 +69,15 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
+            ),
+            IconButton(
+                onPressed: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage(title: "Home"))
+                  )
+                },
+                icon: const Icon(Icons.home),
             ),
           ],
         ),
