@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gestion_ecurie/view/pages/infosUser.dart';
+import 'package:gestion_ecurie/view/shared/drawer.dart';
 
 import '../../backend/local_storage.dart';
 import '../shared/navbar.dart';
@@ -27,6 +28,7 @@ class _ProfilState extends State<Profil> {
           ],
         ),
       ),
+      drawer: DrawerComponent(),
     );
   }
 }

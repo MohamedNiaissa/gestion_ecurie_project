@@ -5,6 +5,7 @@ import 'package:gestion_ecurie/controller/actualites_controller.dart';
 import 'package:gestion_ecurie/models/actualite.dart';
 import 'package:gestion_ecurie/view/pages/signup_popup.dart';
 import 'package:gestion_ecurie/backend/local_storage.dart';
+import 'package:gestion_ecurie/view/shared/drawer.dart';
 import 'package:go_router/go_router.dart';
 
 import '../shared/navbar.dart';
@@ -79,21 +80,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      drawer: Drawer(
-          child: ListView(children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text("Les chevaux de l'écurie"),
-              onTap: () {
-                return context.go('/horse_page');
-              },
-            ),
-          ])),
+      drawer: DrawerComponent(),
       floatingActionButton: FloatingActionButton(
         onPressed: refreshNews,
         tooltip: 'refresh',
