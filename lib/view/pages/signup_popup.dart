@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../services/signup_service.dart';
+import '../../controller/signup_actualities.dart';
 
 class SignupPop extends StatefulWidget {
   @override
@@ -72,8 +73,11 @@ class _MySignupPopup extends State<SignupPop> {
                 appel la fonction Signup et envoie en argument les inputs
               * */
               if (_formKey.currentState!.validate()) {
-                Signup(usernameController.text, passwordController.text, mailController.text,
+               String username = usernameController.text;
+                Signup(username, passwordController.text, mailController.text,
                     profilePictureController.text);
+                newInscription(username);
+                //_insciptionEventCard(username,profilePictureController.text);
                 Navigator.pop(context);
               }
             },
@@ -82,3 +86,5 @@ class _MySignupPopup extends State<SignupPop> {
         ]));
   }
 }
+
+

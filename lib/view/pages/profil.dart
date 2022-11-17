@@ -6,8 +6,6 @@ import 'package:gestion_ecurie/view/pages/infosUser.dart';
 import '../../backend/local_storage.dart';
 import '../shared/navbar.dart';
 class Profil extends StatefulWidget {
-  static const tag = "profil page";
-
   const Profil({Key? key}) : super(key: key);
 
   @override

@@ -8,7 +8,6 @@ Future<bool> loginUser(String username, String mdp) async {
     await getUserFromCredential(username, mdp).then((userI) => {
           LocalStorageHelper.saveValue("tokenUser", userI.toString()),
         });
-
     return true;
   } catch (e) {
     return false;
