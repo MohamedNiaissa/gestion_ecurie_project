@@ -20,11 +20,5 @@ final GoRouter router = GoRouter(
             return const HorseStable(title: 'My little poney');
           }
       ),
-      GoRoute(
-          path: '/event_stable',
-          builder: (BuildContext context, GoRouterState state){
-            return const HorseStable(title: 'Event incomming');
-          }
-      ),
     ]
 );
