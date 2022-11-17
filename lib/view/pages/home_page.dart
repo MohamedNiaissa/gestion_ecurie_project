@@ -35,15 +35,17 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Card _inscriptionNewsCard(Actualite news){
+  Card _inscriptionNewsCard(Actualite news) {
     return Card(
-      child: Row(
-        children: [
-          Icon(Icons.newspaper),
-          Text(news.eventType),
-        ],
-      )
+        child: Row(
+          children: [
+            Icon(Icons.newspaper),
+            Text(news.eventType),
+          ],
+        )
     );
+  }
+
   void _newEvent() {
     ActualitesController.insert();
     // ajoute une fausse inscription aux actualités
