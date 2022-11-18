@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_ecurie/view/pages/form_soiree.dart';
 import 'package:gestion_ecurie/view/shared/drawer.dart';
 import 'package:go_router/go_router.dart';
 
@@ -21,14 +22,22 @@ class _FormsEventState extends State<FormsEvent> {
         child: Navbar(),
       ),
       body: Center(
-        child: Column(
+        child: ListView(
           children: [
-            SizedBox(height: 15),
-            Text("Créer un concours"),
-            SizedBox(height: 15),
-            FormConcours()
+            Column(
+              children: [
+                SizedBox(height: 15),
+                Text("Créer un concours"),
+                SizedBox(height: 15),
+                FormConcours(),
+                SizedBox(height: 15),
+                Text("Créer une soirée"),
+                SizedBox(height: 15),
+                FormSoiree()
+              ],
+                ),
           ],
-            ),
+        ),
         ),
       drawer: DrawerComponent()
     );

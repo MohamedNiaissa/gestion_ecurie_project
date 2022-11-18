@@ -54,82 +54,85 @@ class _InfosUserState extends State<InfosUser> {
         Text('Vos information'),
         Form(
           key: _formKey,
-          child: Column(
-            children: <Widget>[
-              //Text(user["dateNaiss"]),
-              TextField(
-                controller: username,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              children: <Widget>[
+                //Text(user["dateNaiss"]),
+                TextField(
+                  controller: username,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  updateUser("username",user["username"], "username" ,username.text);
-                },
-                child: const Text("Modifier mon nom d'utilisateur"),
-              ),
-              TextField(
-                controller: userPhoto,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                ElevatedButton(
+                  onPressed: () {
+                    updateUser("username",user["username"], "username" ,username.text);
+                  },
+                  child: const Text("Modifier mon nom d'utilisateur"),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  updateUserData("username", user["username"],"userPhoto" , userPhoto.text);
-                },
-                child: const Text("Modifier ma photo d'utilisateur"),
-              ),
-              TextField(
-                controller: dateNaiss,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                TextField(
+                  controller: userPhoto,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  updateUserData("username", user["username"], "dateNaiss", dateNaiss.text);
-                },
-                child: const Text("Modifier ma date de naissance"),
-              ),
-              TextField(
-                controller: userMail,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                ElevatedButton(
+                  onPressed: () {
+                    updateUserData("username", user["username"],"userPhoto" , userPhoto.text);
+                  },
+                  child: const Text("Modifier ma photo d'utilisateur"),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  updateUserData("username", user["username"],"userMail", userMail.text);
-                },
-                child: const Text("Modifier mon email"),
-              ),
-              TextField(
-                controller: userPhone,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                TextField(
+                  controller: dateNaiss,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  updateUserData("username", user["username"], "userPhone",userPhone.text);
-                },
-                child: const Text("Modifier mon numero de telephone"),
-              ),
-              TextField(
-                controller: profilFFE,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                ElevatedButton(
+                  onPressed: () {
+                    updateUserData("username", user["username"], "dateNaiss", dateNaiss.text);
+                  },
+                  child: const Text("Modifier ma date de naissance"),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  updateUserData("username", user["username"], "profilFFE",profilFFE.text);
-                },
-                child: const Text("Modifier mon lien de profil FFE"),
-              )
-            ],
+                TextField(
+                  controller: userMail,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    updateUserData("username", user["username"],"userMail", userMail.text);
+                  },
+                  child: const Text("Modifier mon email"),
+                ),
+                TextField(
+                  controller: userPhone,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    updateUserData("username", user["username"], "userPhone",userPhone.text);
+                  },
+                  child: const Text("Modifier mon numero de telephone"),
+                ),
+                TextField(
+                  controller: profilFFE,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    updateUserData("username", user["username"], "profilFFE",profilFFE.text);
+                  },
+                  child: const Text("Modifier mon lien de profil FFE"),
+                )
+              ],
+            ),
           ),
         ),
       ],
