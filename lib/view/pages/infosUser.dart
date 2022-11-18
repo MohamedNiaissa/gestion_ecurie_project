@@ -77,7 +77,7 @@ class _InfosUserState extends State<InfosUser> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  updateData("username", user["username"],"userPhoto" , userPhoto.text);
+                  updateUserData("username", user["username"],"userPhoto" , userPhoto.text);
                 },
                 child: const Text("Modifier ma photo d'utilisateur"),
               ),
@@ -89,7 +89,7 @@ class _InfosUserState extends State<InfosUser> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  updateData("username", user["username"], "dateNaiss", dateNaiss.text);
+                  updateUserData("username", user["username"], "dateNaiss", dateNaiss.text);
                 },
                 child: const Text("Modifier ma date de naissance"),
               ),
@@ -101,7 +101,7 @@ class _InfosUserState extends State<InfosUser> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  updateData("username", user["username"],"userMail", userMail.text);
+                  updateUserData("username", user["username"],"userMail", userMail.text);
                 },
                 child: const Text("Modifier mon email"),
               ),
@@ -113,7 +113,7 @@ class _InfosUserState extends State<InfosUser> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  updateData("username", user["username"], "userPhone",userPhone.text);
+                  updateUserData("username", user["username"], "userPhone",userPhone.text);
                 },
                 child: const Text("Modifier mon numero de telephone"),
               ),
@@ -125,7 +125,7 @@ class _InfosUserState extends State<InfosUser> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  updateData("username", user["username"], "profilFFE",profilFFE.text);
+                  updateUserData("username", user["username"], "profilFFE",profilFFE.text);
                 },
                 child: const Text("Modifier mon lien de profil FFE"),
               )
