@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../backend/local_storage.dart';
 import '../../controller/create_event.dart';
 
 class FormConcours extends StatefulWidget {
@@ -17,6 +20,8 @@ class _FormConcoursState extends State<FormConcours> {
   TextEditingController photo = new TextEditingController();
   TextEditingController date = new TextEditingController();
 
+  var user =
+  jsonDecode(LocalStorageHelper.getValue("tokenUser").substring(4));
   //TextEditingController participants = new TextEditingController();
 
   final concours_form = GlobalKey<FormState>();
@@ -103,7 +108,6 @@ class _FormConcoursState extends State<FormConcours> {
                       setState(() {
                         date.text =
                             formattedDate; //set output date to TextField value.
-                        mychoosenDate = formattedDate;
                       });
                     } else {
                       print("Date is not selected");
@@ -128,7 +132,7 @@ class _FormConcoursState extends State<FormConcours> {
                   onPressed: () async => {
                     if (concours_form.currentState!.validate())
                       {
-                        createAnEvent(nomConcours.text,specialite.text,adresse.text,mychoosenDate,photo.text)
+                        createAnEvent(nomConcours.text,specialite.text,adresse.text,DateTime.parse(date.text),photo.text, user["username"])
                       },
                   },
                   child: const Text('Créer'),

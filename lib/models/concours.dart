@@ -3,7 +3,7 @@ class Concours {
   late String specialite;
   late String adresse;
   late String photo;
-  late String date;
+  late DateTime date;
   late List participants = [];
 
 

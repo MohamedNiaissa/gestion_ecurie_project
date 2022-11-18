@@ -16,6 +16,6 @@ import 'package:mongo_dart/mongo_dart.dart';
       }
     }
     // récupère l'id de l'user dont l'username est en argument
-    Actualite news = Actualite('inscription', author, DateTime.now(), DateTime.now(),status: 'ok');
+    Actualite news = Actualite('inscription', author, DateTime.now(), DateTime.now(),status: 'ok', ObjectId());
     newsCollection.insertOne(news.toMap());
   }
