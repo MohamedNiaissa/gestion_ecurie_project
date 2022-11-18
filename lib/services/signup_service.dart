@@ -1,6 +1,5 @@
 import 'package:gestion_ecurie/models/user.dart';
 import 'package:gestion_ecurie/services/mongodb.dart';
-import '../backend/constant.dart';
 
 Signup(username, password, mail, profilePicture) async {
   var db = await MongoDataBase.connect();
