@@ -45,7 +45,7 @@ class _HorsePageStable extends State<HorseStable> {
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text('Drawer Header'),
+              child: Text('Pegasus Club'),
             ),
             ListTile(
               title: const Text("Les chevaux de l'écurie"),
@@ -53,7 +53,6 @@ class _HorsePageStable extends State<HorseStable> {
                 return context.go('/horse_page');
               },
             ),
-
           ])),
       floatingActionButton: FloatingActionButton(
         onPressed: _newEvent,

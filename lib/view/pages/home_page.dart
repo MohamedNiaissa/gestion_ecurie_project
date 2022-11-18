@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text('Drawer Header'),
+              child: Text('Pegasus Club'),
             ),
             ListTile(
               title: const Text("Les chevaux de l'écurie"),

@@ -51,7 +51,10 @@ class _InfosUserState extends State<InfosUser> {
       children: [
         //TextField(controller: TextEditingController()..text = 'Your initial value'),
         Text("Bienvenue dans votre profil"),
-        Text('Vos information'),
+        Image.network(userMail.text),
+        Text(userMail.text),
+        Text("data"),
+        Text('Vos informations'),
         Form(
           key: _formKey,
           child: Column(
