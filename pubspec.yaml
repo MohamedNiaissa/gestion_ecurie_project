@@ -39,6 +39,7 @@ dependencies:
 
   mongo_dart: ^0.8.0
   universal_html: ^2.0.8
+  intl: ^0.17.0
 
 
 dev_dependencies:
