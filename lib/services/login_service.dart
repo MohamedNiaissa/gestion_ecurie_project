@@ -1,4 +1,5 @@
 import 'package:gestion_ecurie/models/user.dart';
+import 'package:mongo_dart/mongo_dart.dart';
 
 import '../backend/constant.dart';
 import 'mongodb.dart';
@@ -26,4 +27,14 @@ getUserFromCredential(String username, String mdp) async {
     throw Error();
   }
 
+}
+
+resetPassword(String username,String mail, String mdp) async {
+  var db = await MongoDataBase.connect();
+  var user = await db.collection("Users").findOne({
+    'username': username,
+    'userMail' : mail
+  });
+
+  user.updateOne(modify.set("userMdp", mdp));
 }

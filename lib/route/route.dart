@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:gestion_ecurie/view/pages/home_page.dart';
 import 'package:gestion_ecurie/view/pages/horses_stable.dart';
 import 'package:go_router/go_router.dart';
-
+import '../view/pages/FormForgetPass.dart';
 import '../view/pages/creation_event.dart';
 import '../view/pages/profil.dart';
 
@@ -34,6 +34,12 @@ final GoRouter router = GoRouter(
           builder: (BuildContext context, GoRouterState state){
             return const FormsEvent();
           }
-      )
+      ),
+      GoRoute(
+          path: '/forget-pass',
+          builder: (BuildContext context, GoRouterState state){
+            return const FormForgetPass();
+          }
+      ),
     ]
 );

@@ -4,6 +4,7 @@ import 'package:gestion_ecurie/view/shared/drawer.dart';
 import 'package:go_router/go_router.dart';
 
 import '../shared/navbar.dart';
+import 'FormForgetPass.dart';
 import 'form_concours.dart';
 
 class FormsEvent extends StatefulWidget {
@@ -33,7 +34,8 @@ class _FormsEventState extends State<FormsEvent> {
                 SizedBox(height: 15),
                 Text("Créer une soirée"),
                 SizedBox(height: 15),
-                FormSoiree()
+                FormSoiree(),
+                FormForgetPass()
               ],
                 ),
           ],
