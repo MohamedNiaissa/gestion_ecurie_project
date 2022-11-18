@@ -98,6 +98,7 @@ class _FormSoireeState extends State<FormSoiree> {
                             formattedDate; //set output date to TextField value.
                         mychoosenDate = formattedDate;
                       });
+
                     } else {
                       print("Date is not selected");
                     }
@@ -107,7 +108,7 @@ class _FormSoireeState extends State<FormSoiree> {
                   onPressed: () async => {
                     if (soiree_form.currentState!.validate())
                       {
-                        createAsoiree(nomSoiree.text,theme.text,photoSoiree.text,mychoosenDate)
+                        createAsoiree(nomSoiree.text,theme.text,photoSoiree.text,DateTime.parse(date.text))
                       },
                   },
                   child: const Text('Créer'),

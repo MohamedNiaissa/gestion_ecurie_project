@@ -2,7 +2,7 @@ class Soiree {
   late String nomSoiree;
   late String theme;
   late String photoSoiree;
-  late String date;
+  late DateTime date;
   late List participants = [];
 
 
