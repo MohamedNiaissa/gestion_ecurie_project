@@ -1,21 +1,34 @@
+import 'package:mongo_dart/mongo_dart.dart';
+
 class User {
    late String username;
-   late String userMdp;
+   String? userMdp;
    late String userPhoto;
    late String userMail;
    String? userPhone;
    String? profilFFE;
+   ObjectId? id;
+
+
    String? dateNaiss;
    late bool isGerant;
 
-  User(this.username, this.userMdp, this.userPhoto, this.userMail, this.userPhone,
-      this.profilFFE, this.dateNaiss, this.isGerant);
-
-
+  User(
+      this.username,
+      this.userPhoto,
+      this.userMail,
+      {
+        this.userMdp,
+        this.id,
+        this.userPhone,
+        this.profilFFE,
+        this.dateNaiss,
+        this.isGerant = false,
+      });
 
    @override
    String toString() {
-      return 'User{"username": "'+username+'", "userMdp": "'+userMdp+'", "userPhoto": "'+userPhoto+'", "userMail": "'+userMail+'", "userPhone": $userPhone, "profilFFE": $profilFFE, "dateNaiss": $dateNaiss, "isGerant": $isGerant}';
+       return 'User{"username": "$username", "userPhoto": "$userPhoto", "userMail": "$userMail", "userPhone": $userPhone, "profilFFE": $profilFFE, "dateNaiss": "$dateNaiss", "isGerant": $isGerant}';
    }
 
    Map<String, dynamic> toMap(){

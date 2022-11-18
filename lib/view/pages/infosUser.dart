@@ -69,6 +69,7 @@ class _InfosUserState extends State<InfosUser> {
                 },
                 child: const Text("Modifier mon nom d'utilisateur"),
               ),
+              Text(userPhoto.text),
               TextField(
                 controller: userPhoto,
                 decoration: InputDecoration(
