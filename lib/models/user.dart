@@ -7,12 +7,7 @@ class User {
    late String userMail;
    String? userPhone;
    String? profilFFE;
-
-
    ObjectId? id;
-
-
-
    String? dateNaiss;
    late bool isGerant;
 
