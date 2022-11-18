@@ -24,7 +24,7 @@ class ActualitesController {
     var dbNews = newsCollection.find();
 
     await for (final news in dbNews){
-      Actualite actu = Actualite(news['eventType'], news['_author'], news['endDate'], news['creationDate']);
+      Actualite actu = Actualite(news['eventType'], news['_author'], news['endDate'], news['creationDate'], status: news['status']);
       yield actu;
     }
   }
