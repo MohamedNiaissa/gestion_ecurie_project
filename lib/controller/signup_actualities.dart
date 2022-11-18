@@ -5,12 +5,17 @@ import 'package:mongo_dart/mongo_dart.dart';
   newInscription(username) async {
     //ajoute un évènement correspondant à l'inscription de l'utilisateur passé en argument
     var db = await MongoDataBase.connect();
-    DbCollection newsCollection = await db.collection('Actualites');
-
-
+    DbCollection newsCollection = db.collection('Actualites');
     DbCollection usersCollection = db.collection('Users');
-    var author = await usersCollection.find(where.eq('username', username)).last;
-    // récupère un user, penser à mettre un where en argument du find pour tout usage spécifique
-    Actualite news = Actualite('inscription', author['_id'], DateTime.now(), DateTime.now(),status: 'ok');
+    
+    var allUsers = usersCollection.find();
+    ObjectId author = ObjectId();
+    await for (var user in allUsers){
+      if(user['username'] == username){
+        author = user['_id'];
+      }
+    }
+    // récupère l'id de l'user dont l'username est en argument
+    Actualite news = Actualite('inscription', author, DateTime.now(), DateTime.now(),status: 'ok');
     newsCollection.insertOne(news.toMap());
   }
