@@ -4,6 +4,7 @@ import 'package:gestion_ecurie/view/pages/signup_popup.dart';
 import 'package:go_router/go_router.dart';
 
 import 'FormLogin.dart';
+import 'form_horse.dart';
 
 class HorseStable extends StatefulWidget {
   const HorseStable({super.key, required this.title});
@@ -64,21 +65,40 @@ class _HorsePageStable extends State<HorseStable> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text(
-              'You have created this many events:',
-            ),
+            ElevatedButton(onPressed: (){
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      content: Stack(
+                        clipBehavior: Clip.none, children: <Widget>[
+                        SingleChildScrollView(
+                         child: AddHorse()
+                        )
+                      ],
+                      ),
+                    );
+                  });
+            }, child: Text('ajouter un cheval')),
           ],
         ),
       ),
+
       drawer: Drawer(
           child: ListView(children: [
             const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text('Drawer Header'),
+              child: Text('Navigation'),
+            ),
+            ListTile(
+              title: const Text("Accueil"),
+              onTap: () {
+                return context.go('/');
+              },
             ),
             ListTile(
               title: const Text("Les chevaux de l'écurie"),
