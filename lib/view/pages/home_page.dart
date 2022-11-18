@@ -1,10 +1,10 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gestion_ecurie/controller/actualites_controller.dart';
+import 'package:gestion_ecurie/controller/users_controller.dart';
 import 'package:gestion_ecurie/models/actualite.dart';
+import 'package:gestion_ecurie/models/user.dart';
 import 'package:gestion_ecurie/view/pages/signup_popup.dart';
-import 'package:gestion_ecurie/backend/local_storage.dart';
 import 'package:go_router/go_router.dart';
 
 import 'FormLogin.dart';
@@ -21,39 +21,49 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   List<Actualite> news = [];
-  
-  clearLocalStorage() {
-    setState(() {
-      LocalStorageHelper.clearAll();
-    });
-  }
+  Map<String,User> authors = {};
+  //De la forme {ObjectId.toString(): User}
 
   void refreshNews() async{
-    var dbNews = await ActualitesController.fetchNews();
-    setState(() {
-      news = dbNews;
-    });
+    //met à jour les actualités
+    news = [];
+    authors = {};
+    Stream<Actualite> newsStream = ActualitesController.fetchNews();
+    saveNews(newsStream);
+  }
+
+  void saveNews(Stream<Actualite> actus) async {
+    //Ajoute à news et authors les Actualite du stram en argument et leurs auteurs
+    await for (final actu in actus){
+      User author = await UsersController.getUser(actu.author);
+      
+      setState(() {
+        news.add(actu);
+        authors[actu.author.toString()] = author;
+      });
+    }
   }
 
   Card _inscriptionNewsCard(Actualite news) {
+    String authorName;
+    User? author = authors[news.author.toString()];
+    if (author != null){
+      authorName = author.username;
+    } else {
+      authorName = "User";
+    }
     return Card(
         child: Row(
           children: [
-            Icon(Icons.newspaper),
-            Text(news.eventType),
+            const Icon(Icons.newspaper),
+            Text(news.eventType + " de " + authorName),
           ],
         )
     );
   }
 
-  void _newEvent() {
-    ActualitesController.insert();
-    // ajoute une fausse inscription aux actualités
-  }
-
   @override
   Widget build(BuildContext context) {
-    //refreshNews();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -63,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               onPressed :() => context.go('/')),
 
           IconButton(
-              icon: Icon(Icons.person_add),
+              icon: const Icon(Icons.person_add),
               onPressed: () {
                 // Ici je créer la popup qui affichera le formulaire de création de compte
                 showDialog(
@@ -79,12 +89,12 @@ class _HomePageState extends State<HomePage> {
                     });
               }),
           IconButton(
-            icon: Icon(Icons.login),
+            icon: const Icon(Icons.login),
             onPressed: () => showDialog<String>(
               context: context,
-              builder: (BuildContext context) => AlertDialog(
+              builder: (BuildContext context) => const AlertDialog(
                 // déclaration de la pop up
-                title: Center(child: const Text('Connexion')),
+                title: Center(child: Text('Connexion')),
                 actions: <Widget>[
                   FormLogin()
                 ],
