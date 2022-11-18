@@ -12,7 +12,7 @@ class ActualitesController {
     var author = await usersCollection.find().first;
     // récupère un user, penser à mettre un where en argument du find pour tout usage spécifique
 
-    Actualite news = Actualite("Inscription", author['_id'], DateTime.now(), DateTime.now());
+    Actualite news = Actualite("Inscription", author['_id'], DateTime.now(), DateTime.now(),ObjectId());
     newsCollection.insertOne(news.toMap());
   }
 
@@ -24,7 +24,7 @@ class ActualitesController {
     var dbNews = newsCollection.find();
 
     await for (final news in dbNews){
-      Actualite actu = Actualite(news['eventType'], news['_author'], news['endDate'], news['creationDate']);
+      Actualite actu = Actualite(news['eventType'], news['_author'], news['endDate'], news['creationDate'],ObjectId());
       yield actu;
     }
   }

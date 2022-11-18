@@ -14,6 +14,15 @@ insertEvent(nomconcours, specialite, adresse, DateTime date, photo, username ) a
   var user = await db.collection('Users').findOne({"username": username});
   var id_user = user["_id"];
 
-  Actualite actu = new Actualite("concours", id_user, date, DateTime.now());
+  var eventId = ObjectId();
+
+  DateTime dateNow = DateTime.parse('1974-03-20 00:00:00.000');
+  print(dateNow);
+  Actualite actu = new Actualite("concours", id_user, date, dateNow, eventId);
   await db.collection('Actualites').insertOne(actu.toMap());
+  var act = await db.collection('Actualites').findOne({"endDate":dateNow});
+  print(dateNow);
+  var id_act = act["_id"];
+  print(id_act);
+  return id_act;
 }
