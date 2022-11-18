@@ -23,7 +23,7 @@ class _InfosUserState extends State<InfosUser> {
   TextEditingController profilFFE = new TextEditingController();
   //var userInfoString = LocalStorageHelper.getValue("tokenUser");
 
-  Map<String, dynamic> user =
+  var user =
       jsonDecode(LocalStorageHelper.getValue("tokenUser").substring(4));
 
 
