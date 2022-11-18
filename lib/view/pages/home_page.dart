@@ -7,10 +7,6 @@ import 'package:gestion_ecurie/controller/actualites_controller.dart';
 import 'package:gestion_ecurie/controller/users_controller.dart';
 import 'package:gestion_ecurie/models/actualite.dart';
 import 'package:gestion_ecurie/models/user.dart';
-
-import 'package:gestion_ecurie/view/shared/drawer.dart';
-import '../shared/navbar.dart';
-
 import 'package:gestion_ecurie/view/pages/signup_popup.dart';
 
 import 'package:gestion_ecurie/backend/local_storage.dart';
@@ -21,7 +17,6 @@ import 'package:go_router/go_router.dart';
 
 import '../shared/navbar.dart';
 import 'FormLogin.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});

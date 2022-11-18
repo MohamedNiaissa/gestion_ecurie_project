@@ -4,14 +4,8 @@ import 'package:gestion_ecurie/view/pages/signup_popup.dart';
 import 'package:gestion_ecurie/view/shared/drawer.dart';
 import 'package:go_router/go_router.dart';
 
-
-import '../../models/horse.dart';
-import '../shared/drawer.dart';
-
-
 import '../shared/navbar.dart';
 import 'FormLogin.dart';
-import 'form_horse.dart';
 
 class HorseStable extends StatefulWidget {
   const HorseStable({super.key, required this.title});
@@ -23,7 +17,7 @@ class HorseStable extends StatefulWidget {
 }
 
 class _HorsePageStable extends State<HorseStable> {
- List <Horse> horse = [];
+
   void _newEvent() {
     ActualitesController.insert();
     // ajoute une fausse inscription aux actualités
@@ -38,23 +32,11 @@ class _HorsePageStable extends State<HorseStable> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ElevatedButton(onPressed: (){
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      content: Stack(
-                        clipBehavior: Clip.none, children: <Widget>[
-                        SingleChildScrollView(
-                         child: AddHorse()
-                        )
-                      ],
-                      ),
-                    );
-                  });
-            }, child: Text('ajouter un cheval')),
+            const Text(
+              'You have created this many events:',
+            ),
           ],
         ),
       ),
