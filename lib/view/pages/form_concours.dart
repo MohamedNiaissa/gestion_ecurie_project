@@ -103,7 +103,6 @@ class _FormConcoursState extends State<FormConcours> {
                       setState(() {
                         date.text =
                             formattedDate; //set output date to TextField value.
-                        mychoosenDate = formattedDate;
                       });
                     } else {
                       print("Date is not selected");
@@ -128,7 +127,7 @@ class _FormConcoursState extends State<FormConcours> {
                   onPressed: () async => {
                     if (concours_form.currentState!.validate())
                       {
-                        createAnEvent(nomConcours.text,specialite.text,adresse.text,mychoosenDate,photo.text)
+                        createAnEvent(nomConcours.text,specialite.text,adresse.text,DateTime.parse(date.text),photo.text)
                       },
                   },
                   child: const Text('Créer'),
