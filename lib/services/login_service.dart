@@ -12,14 +12,14 @@ getUserFromCredential(String username, String mdp) async {
 
   try {
   User newUser = User(
-    user['username'],
-    user['userPhoto'],
-    user['userMail'],
-    id: user['_id'],
-    userPhone: user['userPhone'],
-    profilFFE: user['profilFFE'],
-    dateNaiss: user['dateNaiss'],
-    isGerant: user['profilFFE'],
+    user[0]['username'],
+    user[0]['userPhoto'],
+    user[0]['userMail'],
+    id: user[0]['_id'],
+    userPhone: user[0]['userPhone'],
+    profilFFE: user[0]['profilFFE'],
+    dateNaiss: user[0]['dateNaiss'],
+    isGerant: user[0]['isGerant'],
   );
   return newUser;
   } catch (e){
