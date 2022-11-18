@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_ecurie/controller/actualites_controller.dart';
 import 'package:gestion_ecurie/view/pages/signup_popup.dart';
+import 'package:gestion_ecurie/view/shared/drawer.dart';
 import 'package:go_router/go_router.dart';
 
+import '../shared/navbar.dart';
 import 'FormLogin.dart';
 
 class HorseStable extends StatefulWidget {
@@ -24,43 +26,9 @@ class _HorsePageStable extends State<HorseStable> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: <Widget>[
-          IconButton(
-              icon: Image.asset('assets/img/unicorn_logo.png'),
-              onPressed :() => context.go('/')),
-
-          IconButton(
-              icon: Icon(Icons.person_add),
-              onPressed: () {
-// Ici je créer la popup qui affichera le formulaire de création de compte
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        content: Stack(
-                          clipBehavior: Clip.none, children: <Widget>[
-                          SignupPop()
-                        ],
-                        ),
-                      );
-                    });
-              }),
-          IconButton(
-            icon: Icon(Icons.login),
-            onPressed: () => showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                // déclaration de la pop up
-                title: Center(child: const Text('Connexion')),
-                actions: <Widget>[
-                  FormLogin()
-                ],
-              ),
-            ),
-          )
-        ],
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(70),
+        child: Navbar(),
       ),
       body: Center(
         child: Column(
@@ -72,22 +40,7 @@ class _HorsePageStable extends State<HorseStable> {
           ],
         ),
       ),
-      drawer: Drawer(
-          child: ListView(children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text("Les chevaux de l'écurie"),
-              onTap: () {
-                return context.go('/horse_page');
-              },
-            ),
-
-          ])),
+      drawer: DrawerComponent(),
       floatingActionButton: FloatingActionButton(
         onPressed: _newEvent,
         tooltip: 'new event',
