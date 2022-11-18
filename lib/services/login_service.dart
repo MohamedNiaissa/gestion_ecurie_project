@@ -11,7 +11,16 @@ getUserFromCredential(String username, String mdp) async {
   }).toList(); // Mettre ensuite le JSON de l'utilisateur dans un tableau
 
   try {
-  User newUser = new User(user[0]["username"], user[0]["userMdp"], user[0]["userPhoto"], user[0]["userMail"], user[0]["userPhone"], user[0]["profilFFe"], user[0]["dateNaiss"], user[0]["isGerant"]);
+  User newUser = User(
+    user['username'],
+    user['userPhoto'],
+    user['userMail'],
+    id: user['_id'],
+    userPhone: user['userPhone'],
+    profilFFE: user['profilFFE'],
+    dateNaiss: user['dateNaiss'],
+    isGerant: user['profilFFE'],
+  );
   return newUser;
   } catch (e){
     throw Error();
