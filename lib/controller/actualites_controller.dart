@@ -16,16 +16,16 @@ class ActualitesController {
     newsCollection.insertOne(news.toMap());
   }
 
-  static Future<List<Actualite>> fetchNews() async {
-    List<Actualite> newsList = [];
+  static Stream<Actualite> fetchNews() async*{
+    //Cherche les Actus dans la BDD et les renvoie sous forme d'objets
+    
     var db = await MongoDataBase.connect();
     DbCollection newsCollection = await db.collection('Actualites');
-    var dbNews = await newsCollection.find();
-    dbNews.forEach((news) {
-      Actualite actualite = Actualite(news['eventType'], news['_author'], news['endDate'], news['creationDate']);
-      print(actualite);
-      newsList.add(actualite);
-    });
-    return newsList;
+    var dbNews = newsCollection.find();
+
+    await for (final news in dbNews){
+      Actualite actu = Actualite(news['eventType'], news['_author'], news['endDate'], news['creationDate']);
+      yield actu;
+    }
   }
 }
