@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../controller/create_event.dart';
+
 class FormConcours extends StatefulWidget {
   const FormConcours({Key? key}) : super(key: key);
 
@@ -21,6 +23,7 @@ class _FormConcoursState extends State<FormConcours> {
 
   DateTime date1 = DateTime(2022, 11, 18);
 
+  String mychoosenDate = "";
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +55,6 @@ class _FormConcoursState extends State<FormConcours> {
                   return null;
                 },
                 controller: specialite,
-                obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Specialite',
@@ -67,7 +69,6 @@ class _FormConcoursState extends State<FormConcours> {
                   return null;
                 },
                 controller: adresse,
-                obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Adresse',
@@ -102,6 +103,7 @@ class _FormConcoursState extends State<FormConcours> {
                       setState(() {
                         date.text =
                             formattedDate; //set output date to TextField value.
+                        mychoosenDate = formattedDate;
                       });
                     } else {
                       print("Date is not selected");
@@ -116,7 +118,6 @@ class _FormConcoursState extends State<FormConcours> {
                   return null;
                 },
                 controller: photo,
-                obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Lien photo',
@@ -126,7 +127,9 @@ class _FormConcoursState extends State<FormConcours> {
                 child: TextButton(
                   onPressed: () async => {
                     if (concours_form.currentState!.validate())
-                      {Navigator.pop(context, 'OK')},
+                      {
+                        createAnEvent(nomConcours.text,specialite.text,adresse.text,mychoosenDate,photo.text)
+                      },
                   },
                   child: const Text('Créer'),
                 ),
