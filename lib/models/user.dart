@@ -34,7 +34,9 @@ class User {
    @override
    String toString() {
 
+
       return 'User{"username": "'+username+'", "userPhoto": "'+userPhoto+'", "userMail": "'+userMail+'", "userPhone": $userPhone, "profilFFE": $profilFFE, "dateNaiss": $dateNaiss, "isGerant": $isGerant}';
+
 
    }
 
