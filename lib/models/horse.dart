@@ -7,8 +7,8 @@ class Horse {
   late String horsesexe;
   late String horsespeciality;
   late String horsePP;
-  late String horsebirth;
-  late String horseowner;
+  late DateTime horsebirth;
+  late ObjectId? horseowner;
 
   Horse(this.horsename,this.horsecoat, this.horserace, this.horsesexe, this.horsespeciality,
       this.horsePP, this.horsebirth, this.horseowner);

@@ -10,6 +10,8 @@ class AddHorse extends StatefulWidget {
 }
 
 class _MyNewHorse extends State<AddHorse> {
+
+
   final horsenameController = TextEditingController();
   final horsecoatController = TextEditingController();
   final horseraceController = TextEditingController();
@@ -127,7 +129,7 @@ class _MyNewHorse extends State<AddHorse> {
                 String horsePP = horsePPController.text;
                 String horsebirth = horsebirthController.text;
                 String username = usernameController.text;
-                NewHorse(horsename, horsecoat,horserace,horsesexe,horsespeciality,horsePP,horsebirth,username
+                NewHorse.AddHorse(horsename, horsecoat,horserace,horsesexe,horsespeciality,horsePP,horsebirth,username
                 );
                 //_insciptionEventCard(username,profilePictureController.text);
                 Navigator.pop(context);
